@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GameWarfare</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+
+</head>
+<body>
+     <div id="player" class="skin_1"></div>
+     <div class="enemy"></div>
+     <div class="bullet"></div>
+     <div class="boom"></div>
+
+     <script type="text/javascript" src="Javascript.js"></script>
+
+</body>
+</html>

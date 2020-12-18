@@ -1,0 +1,255 @@
+
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewort" content = "width=device-width, initial-scale=1.0">
+
+    <title>First Javascript</title>
+
+</head>
+<body>
+
+<p id="text">irgend ein Text</p>
+<button onclick="changeColor('blue');">blau</button>
+<button onclick="changeColor('red');">rot</button>
+<br>
+<form name="Myform" action="" onsubmit="return validateForm()" method="post">
+    name: <input type="text" name="fname">
+    telefon: <input type="text" name="ftel">
+    <input type = "submit" value="submit">
+</form>
+
+
+<script>
+
+    function validateForm(){
+
+        var element = document.forms["Myform"]["fname"].value;
+        var tel = document.forms["Myform"]["ftel"].value;
+        if(element==""){
+
+            alert("Name muss ausgefüllt sein");
+            return false;
+        } else if (tel==""){
+            alert("Tel muss angegeben werden");
+            return false;
+        }
+    }
+
+
+    function changeColor(newColor){
+
+        var element = document.getElementById("text");
+        element.style.color = newColor;
+
+
+    }
+
+    //
+
+    function Guitar (color, shape){
+        this.color = color;
+        this.shape = shape;
+    }
+    var Fender = new Guitar('Red', 'Telecater');
+    console.log(Fender);
+
+
+    /*
+
+    //ist das ein konstrukor?
+
+    var apple = new Object();
+    apple.color = 'green';
+    apple.shape = 'round';
+
+    apple.describe = function(){
+        return 'An Aplle is' + this.color;
+    }
+
+    console.log(apple.describe());
+
+
+
+
+
+    // Objekt erzeugund person mit eigenschaften
+
+
+    var person = {
+        firstName: 'brat',
+        age: 23,
+        children: ["lisa", "peter"],
+        adress: {
+            street: 'colognestret',
+            number: 100,
+            city: 'koln',
+            state: 'de'
+        },
+        Rechner: function(){
+
+        return  this.age - this.adress.number;
+    }
+    }
+    console.log(person.Rechner());
+
+
+
+
+
+
+
+
+
+
+    console.log(person.adress.state);
+    console.log(person.children[1]);
+    console.log(person.firstName);
+
+    //function
+
+
+
+
+    function summ (a,b){
+       return a+b;
+    }
+    document.write(summ(23,34));
+
+
+
+
+
+    function write(word){
+       document.write(word);
+    }
+    write("hi");
+
+
+
+    var res = 5;
+
+    switch (res) {
+
+        case 1:
+            alert("res is 1");
+            break;
+        case 2:
+            alert("res us 2");
+            break;
+        case 3:
+            alert("res is 3");
+            break;
+        default:
+            alert("res is unknown");
+    }
+
+
+
+
+    var Num_1 = 23;
+    var Num_2 = 45;
+
+    if (Num_1 > Num_2){
+        console.log(Num_1 + ">" +  Num_2);
+    } else if(Num_1 == Num_2){
+        console.log(Num_1 + " = " + Num_2);
+    }
+    else {
+        console.log(Num_1 + " < " + Num_2);
+    }
+
+    var bool = true;
+    if(bool){
+        console.log(bool + "true");
+    }
+
+
+
+    if (1 != 1){
+        console.log("if ist ausgelört");
+    } else if(2==2){
+        console.log(" zwei entspricht zwei");
+    }
+    else {
+        console.log("else hat funktioniert");
+    }*/
+
+    //Schleifen
+
+    /*
+    for (var i = 100; i >10; i-=10){
+
+        console.log(i);
+
+     }
+
+    var i =0;
+    while (i<10){
+
+        console.log(i);
+        i++;
+    }
+
+    var i = 20;
+    do {
+        console.log(i);
+    } while (i > 10);
+
+
+
+    //schleifen mit arrays
+
+    var color = new Array("Red", "Blue", "Greem");
+    for ( var i =0; i < color.length;i++) {
+        console.log(color[i]);
+    }
+    */
+
+
+
+
+    // Arrays erste Variation
+    //var color = ["Blau", "Grün", "Blau"];
+    //document.write(color[1]);
+    //document.write(color[0]);
+    //document.write(color[2]);
+
+    // Array zweite Variationen
+    var color = new Array("Blau", "Grün", "Blau");
+    color[3] = "Grau"; // einfügen des neuen Strings im Array
+    color.push("Trick"); // fügt das neue element trick ans ende des arrays
+    document.write(color[3] + color[2]);
+
+
+    // arbeit mit operatoren
+    var FirstNum = 12;
+    var SecondNum = 24;
+    FirstNum +=12;
+    //document.write(Math.round(2.99) + "<br>");
+    // document.write("ergebnis: ", FirstNum + SecondNum);
+    //document.write(Math.random());
+
+
+    //document.write("Diese Quasalberei ist: ", + FirstNum  + SecondNum);
+
+
+    // Arbeit mit varialen
+    var num = 1.45;
+    var Num = "String";
+    var bool = true;
+    console.log(bool);
+
+    // console.log(num);
+
+    //var name = prompt("Wie ist ihr Name");
+    //console.log("Dein name ist: " + name);
+
+
+</script>
+
+
+
+</body>
+</html>

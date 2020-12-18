@@ -1,0 +1,15 @@
+  <script>
+
+
+       setTimeout(endlich, 3000);
+
+       function endlich(){
+           document.write("endlich wurde geladen scheißedreck");
+       }
+
+       function beginn() {
+           document.write("ich wurde geladen");
+
+       }
+
+    </script>

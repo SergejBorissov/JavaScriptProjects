@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GameWarfare</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+
+</head>
+<body>
+<div id="player" class="skin_1"></div>
+
+<div class="boom"></div>
+
+
+
+<script type="text/javascript" src="script.js"></script>
+
+</body>
+</html>
+
+
+
+-----------------
+
+/*
+*  Spiel-Konzept
+* 1) Bewegung des Spielers nach oben und nach unten
+* 2) Erzeugung eines Schusses
+* 3) Patrone
+* 4) Überprüfung ob die patrone den gegner getroffen gatr
+* 5) wenn die patrone getroffen hat, dann eine explosion als reaktion
+*
+*
+*
+* */
+
+//Auswahl des Spielers
+player = document.querySelector("#player"); // querySelector = die Hintergundfläche?
+console.dir(player);
+
+// das verhalten beim drücken der taste nach unten
+document.addEventListener('keydown', function(event){
+
+
+    switch(event.keyCode){
+        //nach unten fligen (s)
+        case 40:
+            player.style.top = player.offsetTop + 50 + "px";
+
+            break;
+        // nach oben fliegen (w)
+        case 38:
+            player.style.top = player.offsetTop - 50 + "px";
+
+            break;
+        // ausführung des schuss(leertaste)
+        case 32:
+            createBullet();
+
+            break;
+    }
+
+
+});
+
+//erstellung der patrone
+//<div class="bullet"></div>
+function createBullet(){
+    // erzeugung des elements für die patrone
+    let bullet = document.createElement("div");
+    //klasse für patrone
+    bullet.className = "bullet";
+    //erzeugung der position der patrone
+    bullet.style.top = player.offsetTop + 150 + "px";
+    //hinzufügen der patrone auf die spielfläche
+    document.body.appendChild(bullet);
+
+
+    bulletMove(bullet)
+
+}    // Erstellung der Patronenbewegung
+
+createEnemy();
+
+
+function bulletMove(bullet){
+
+    // timer für die bewegung der patrone
+    let timerId = setInterval(function(){
+        // bewegung der patrone nach rechts
+        bullet.style.left = bullet.offsetLeft + 30 + "px";
+        //überprüfuen ob die patrone das ziel getroffen hat
+        isShot(bullet);
+        if(bullet.offsetLeft > document.body.clientWidth){
+            bullet.remove();
+            clearInterval(timerId);
+        }
+
+    }, 10);
+
+
+
+
+
+
+
+}
+
+function isShot(bullet){
+
+    let topB = bullet.offsetTop;
+    let bottomB = bullet.offsetTop + bullet.offsetHeight;
+
+
+}
+
+//erstellung des feindes
+//<div class="enemy"></div>
+
+function createEnemy(){
+    let enemy = document.createElement("div");
+    enemy.className = "enemy";
+    document.body.appendChild(enemy);
+
+    setInterval(function(){
+
+        enemy.style.left = (enemy.offsetLeft - 10) + "px";
+
+    },100);
+}
+
+
+
+------------------------------------------
+
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: url(img/bg6.jpg);
+    background-size: cover;
+    position: relative;
+}
+
+#player {
+    height: 200px;
+    position: absolute;
+    top: calc(50% - 225px);
+    left: 60px;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+#player.skin_1 {
+    width: 168px;
+    background: url(img/player_1.png);
+}
+
+#player.skin_2 {
+    width: 177px;
+    background: url(img/player_2.png);
+}
+
+.enemy {
+    position: absolute;
+    top: calc(50% - 85px);
+    right: 20px;
+    width: 89px;
+    height: 73px;
+    background: url("img/enemy.gif") no-repeat;
+}
+
+.bullet {
+    width: 30px;
+    height: 10px;
+    background: #fefbfe;
+    border-radius: 2px 5px 5px 2px;
+    position: absolute;
+    top: 20%;
+    left: 200px;
+    border-radius: 2px 7px 7px 2px;
+    box-shadow: 0 0 5px #fff, 0 0 8px #fff, 0 0 12px #fff, 0 0 15px red, 0 0 25px red;
+    z-index: 5;
+}
+
+.boom {
+    background: url(img/boom.gif);
+    position: absolute;
+    width: 200px;
+    height: 200px;
+}
+
+#lifes {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+#lifes span {
+    display: block;
+    margin: 10px;
+    float: left;
+    width: 40px;
+    height: 40px;
+    background: url(img/life.png);
+    background-size: cover;
+}

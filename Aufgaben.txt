@@ -1,0 +1,55 @@
+//Warfare
+
+
+
+1) anderes raumschiff
+
+2) pfeiltasten eoinbauen
+
+
+3) 
+
+
+///
+
+
+/*
+*  Spiel-Konzept
+* 1) Bewegung des Spielers nach oben und nach unten
+* 2) Erzeugung eines Schusses
+* 3) Patrone
+* 4) Überprüfung ob die patrone den gegner getroffen gatr
+* 5) wenn die patrone getroffen hat, dann eine explosion als reaktion
+*
+*
+*
+* */
+
+//Auswahl des Spielers
+player = document.querySelector("#player"); // querySelector = die Hintergundfläche?
+console.dir(player);
+
+// das verhalten beim drücken der taste nach unten
+document.addEventListener('keydown', function(event){
+
+
+    switch(event.keyCode){
+        //nach unten fligen (s)
+        case 83:
+            player.style.top = player.offsetTop + 10 + "px";
+
+        break;
+        // nach oben fliegen (w)
+        case 87:
+            player.style.top = player.offsetTop - 10 + "px";
+
+            break;
+        // ausführung des schuss(leertaste)
+        case 32:
+
+            break;
+    }
+
+    console.dir(event);
+
+});

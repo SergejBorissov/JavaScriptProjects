@@ -1,0 +1,131 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Flug Spiel</title>
+
+
+
+
+</head>
+<body>
+
+<canvas id="canvas" width="288" height="512"> </canvas>
+
+
+<script src="js/game.js"></script>
+
+</body>
+</html>
+---------------------------------------
+js:
+------------------------
+
+var cvs = document.getElementById("canvas");// ruft das Dokument aus html unter der Id Canvas auf
+var ctx = cvs.getContext("2d"); // Ist zuständig für das Aussehen des Spiels
+
+
+var bird = new Image(); //
+var bg = new Image(); // background
+var fg = new Image(); // for ground
+var pipeUp = new Image(); //röhe oben
+var pipeBottom = new Image(); //röhre unten
+
+
+bird.src="img/bird.png";   //hochladen der bilder ins system
+bg.src="img/bg.png";       //background bild hochladen
+fg.src="img/fg.png";       // vordergrund bild hochladen
+pipeUp.src="img/pipeUp.png";  //obere röhre
+pipeBottom.src="img/pipeBottom.png"; // untere röhre
+
+
+// Audio Klang einfügen
+
+var fly = new Audio();  // klangausgabe beim fliegen
+var score_audio = new Audio(); // klangausgabe beim punkteausbau
+
+fly.src="audio/fly.mp3";  // Hochladen der mp3-datei fürs fliegen
+score_audio.src="audio/score.mp3";  //hochladen der mp3-datei beim steigern der punkte
+
+var gap = 90;
+
+//Beim drücken einer beliebigen Tastatur Taste
+
+document.addEventListener("keydown", moveUp);  // die bewegung des vogles nach unten?!
+
+function moveUp(){       // funktion für die verränderung der flughöhe
+
+    yPos -= 25;
+    fly.play();
+}
+
+
+// Erstellung von Blöcken
+
+var pipe = [];
+pipe[0]={
+    x : cvs.width,
+    y : 0
+}
+
+var score = 0;   // Punktestandzähler
+
+//Position des Vogels
+
+var xPos = 10; // Position auf der X-Achse
+var yPos = 150; // Position auf der Y-Achse
+var grav = 1.5; // stärke der gravitation
+
+
+function draw(){        // diese funktion erstellt die bilder udn deren bewegung
+    ctx.drawImage(bg,0,0);   //Positionierung des Hintergrundbildes in der X-Achse =0 und Y-Achse=0
+
+    for(var i = 0; i < pipe.length; i++){
+        ctx.drawImage(pipeUp, pipe[i].x, pipe[i].y);
+        ctx.drawImage(pipeBottom, pipe[i].x, pipe[i].y + pipeUp.height + gap);
+
+        pipe[i].x--;
+
+        if(pipe[i].x ==125){  //zufällige erstellung der blöcke
+            pipe.push({
+                x: cvs.width, // blöcke bzw. röhre werden sozusagen rechts hinter dem bildschirm erstellt
+                y: Math.floor(Math.random() * pipeUp.height) - pipeUp.height
+            });
+        }
+
+        if(xPos + bird.width >= pipe[i].x
+            && xPos <= pipe[i].x + pipeUp.width
+            && (yPos <= pipe[i].y + pipeUp.height
+                || yPos + bird.height >=pipe[i].y +
+                pipeUp.height + gap)|| yPos + bird.height >= cvs.height - fg.height) {
+            location.reload(); // Neuladung des Spiels bei berührung mit gegenständen
+        }
+
+        if(pipe[i].x ==5){ 
+
+            score++;
+            score_audio.play();
+        }
+
+    }
+
+
+
+    ctx.drawImage(fg, 0, cvs.height - fg.height); //setzung des vordergrundbildes
+    ctx.drawImage(bird, xPos,yPos);   // setzung des vogels
+    ctx.fillText("Punkte: " + score, 10, cvs.height - 20); //setzung des Textes mit dem Punktestand
+
+    yPos += grav;
+
+    ctx.fillStyle = "000#"; //Schwarze Schrift
+    ctx.font = "24px Verdana"; //Schriftgröße und Schriftart
+
+    requestAnimationFrame(draw);
+
+}
+
+pipeBottom.onload = draw;

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="de_DE">
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta name = "author" content = "Borissov"/>
+    <meta name = "description" content = "Netlabel für audiotive Kunst"/>
+    <meta name = "kexwords" content = "Label, Musikverlag,elektronische Musik"/>
+    <meta name = "robots" content = "[100]"/>
+    <meta name = "date" content = "[14.10.2019]"/>
+    <meta name = "copyright" content = "S.B."/>
+    <meta name = "page-topic" content = "Arts, music"/>
+    <meta name = "reply-to" content = "rebel@blabala.com"/>
+    <meta name = "language" content = "german"/>
+    <meta name = "content-type" content = "Label für Musik und Kunst"/>
+
+
+    <title>Meta-Arts</title>
+    <link rel="stylesheet" href="bennenung.css">
+    <style>
+
+        * {
+            margin: 0;
+
+
+        }
+
+
+        .myBox {
+            width: 100vW;
+            height: 100vH;
+
+
+
+
+        }
+        #firstBox {
+            padding-right: 22px;
+            margin: 30px ;
+            background-color: orange;
+        }
+
+        #secondBox {
+
+            border: dotted 5px black;
+            background-color: rgb(255, 0, 0);
+        }
+        #thirdBox {
+
+            background-color: rgba(0, 255, 0, 0.5);
+
+        }
+
+    </style>
+
+
+
+
+    <script>
+
+      test1();
+
+      function test1(){
+          let test3 = "das ist ein Stringintervall";
+
+
+          console.log(test3);
+          let zahl = 5;
+          let string = "bin ein string";
+          console.log(zahl + string);
+      }
+
+
+    </script>
+
+</head>
+
+<body>
+
+<div class ="myDiv"><h1>ich bin ein titel</h1></div>
+
+
+
+
+</body>
+</ht
